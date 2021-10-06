@@ -4,12 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.transition.MaterialElevationScale
 import com.onirutla.metalgearcharacter.CharacterListAdapter
 import com.onirutla.metalgearcharacter.R
 import com.onirutla.metalgearcharacter.data.metalGearCharacters
 import com.onirutla.metalgearcharacter.databinding.FragmentHomeBinding
+
 
 class HomeFragment : Fragment() {
 
@@ -17,9 +22,20 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val listAdapter by lazy {
-        CharacterListAdapter {
-            findNavController().navigate(
-                HomeFragmentDirections.actionHomeFragmentToDetailFragment(it)
+        CharacterListAdapter { view, character ->
+            val characterCardDetailTransitionName = getString(R.string.list_transition_detail)
+            val extras = FragmentNavigatorExtras(view to characterCardDetailTransitionName)
+
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
+            }
+
+            view.findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToDetailFragment(character),
+                extras
             )
         }
     }
@@ -36,6 +52,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpUI()
         setUpMenu()
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
     }
 
     private fun setUpUI() {
