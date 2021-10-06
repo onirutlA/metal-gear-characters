@@ -5,4 +5,6 @@
     <string name="developer_summary">I am a Computer Science Student that has an interest in Software Engineering. I had experience in developing an Android App, RESTful API, and Static Website. I tend to write code that is testable, robust, and readable.</string>
     <string name="template_detail">The Boss, also known as The Joy, The Mother of Special Forces, Mercury Lady and Voyevoda</string>
     <string name="biography">Biography</string>
+    <string name="list_transition_name">list_transition_%1$s</string>
+    <string name="list_transition_detail">list_transition_detail</string>
 </resources>

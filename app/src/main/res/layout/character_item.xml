@@ -18,7 +18,8 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:elevation="4dp"
-        android:focusable="true">
+        android:focusable="true"
+        android:transitionName="@{@string/list_transition_name(character.name)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -31,10 +32,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                app:loadImageFromId="@{character.image}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:loadImageFromId="@{character.image}"
                 app:shapeAppearanceOverlay="@style/CircularImageView"
                 tools:src="@drawable/big_boss" />
 
@@ -72,4 +73,3 @@
     </com.google.android.material.card.MaterialCardView>
 
 </layout>
-

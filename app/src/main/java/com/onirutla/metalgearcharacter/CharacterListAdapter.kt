@@ -1,6 +1,7 @@
 package com.onirutla.metalgearcharacter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -8,7 +9,7 @@ import com.onirutla.metalgearcharacter.data.Differentiator
 import com.onirutla.metalgearcharacter.data.MetalGearCharacter
 import com.onirutla.metalgearcharacter.databinding.CharacterItemBinding
 
-class CharacterListAdapter(private val listener: (character: MetalGearCharacter) -> Unit) :
+class CharacterListAdapter(private val listener: (view: View, character: MetalGearCharacter) -> Unit) :
     ListAdapter<MetalGearCharacter, CharacterListAdapter.ViewHolder>(Differentiator) {
 
     override fun onCreateViewHolder(
@@ -28,7 +29,7 @@ class CharacterListAdapter(private val listener: (character: MetalGearCharacter)
         holder.apply {
             binding.character = getItem(position)
             itemView.setOnClickListener {
-                listener(getItem(position))
+                listener(it, getItem(position))
             }
         }
     }

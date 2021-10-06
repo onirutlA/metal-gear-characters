@@ -20,7 +20,9 @@
             android:layout_height="?attr/actionBarSize"
             app:layout_scrollFlags="scroll|enterAlways"
             app:menu="@menu/main_menu"
-            app:title="@string/app_name" />
+            app:navigationIconTint="?attr/colorOnPrimary"
+            app:title="@string/app_name"
+            app:titleTextColor="?attr/colorOnPrimary" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -33,6 +35,7 @@
             android:id="@+id/character_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:transitionGroup="true"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="11"
             tools:listitem="@layout/character_item" />
