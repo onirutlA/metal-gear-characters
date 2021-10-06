@@ -10,11 +10,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.MaterialSharedAxis
 import com.onirutla.metalgearcharacter.CharacterListAdapter
 import com.onirutla.metalgearcharacter.R
 import com.onirutla.metalgearcharacter.data.metalGearCharacters
 import com.onirutla.metalgearcharacter.databinding.FragmentHomeBinding
-
 
 class HomeFragment : Fragment() {
 
@@ -68,6 +68,18 @@ class HomeFragment : Fragment() {
         binding.toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_about -> {
+
+                    exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
+                        duration =
+                            resources.getInteger(R.integer.material_motion_duration_long_1)
+                                .toLong()
+                    }
+                    reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
+                        duration =
+                            resources.getInteger(R.integer.material_motion_duration_long_1)
+                                .toLong()
+                    }
+
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
                     true
                 }
