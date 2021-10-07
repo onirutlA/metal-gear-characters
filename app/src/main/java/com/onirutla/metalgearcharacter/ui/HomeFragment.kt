@@ -50,10 +50,12 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpUI()
-        setUpMenu()
+
         postponeEnterTransition()
         view.doOnPreDraw { startPostponedEnterTransition() }
+
+        setUpUI()
+        setUpMenu()
     }
 
     private fun setUpUI() {
@@ -87,7 +89,6 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
 
     override fun onDestroy() {
         super.onDestroy()
