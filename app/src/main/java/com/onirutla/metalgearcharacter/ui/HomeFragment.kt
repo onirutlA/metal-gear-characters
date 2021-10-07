@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.doOnPreDraw
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -13,13 +14,13 @@ import com.google.android.material.transition.MaterialElevationScale
 import com.google.android.material.transition.MaterialSharedAxis
 import com.onirutla.metalgearcharacter.CharacterListAdapter
 import com.onirutla.metalgearcharacter.R
-import com.onirutla.metalgearcharacter.data.metalGearCharacters
 import com.onirutla.metalgearcharacter.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HomeViewModel by viewModels()
 
     private val listAdapter by lazy {
         CharacterListAdapter { view, character ->
@@ -59,7 +60,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setUpUI() {
-        listAdapter.submitList(metalGearCharacters)
+        viewModel.characters.observe(viewLifecycleOwner, {
+            listAdapter.submitList(it)
+        })
         binding.characterList.apply {
             adapter = listAdapter
             setHasFixedSize(true)
@@ -72,14 +75,10 @@ class HomeFragment : Fragment() {
                 R.id.menu_about -> {
 
                     exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true).apply {
-                        duration =
-                            resources.getInteger(R.integer.material_motion_duration_long_1)
-                                .toLong()
+                        duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
                     }
                     reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false).apply {
-                        duration =
-                            resources.getInteger(R.integer.material_motion_duration_long_1)
-                                .toLong()
+                        duration = resources.getInteger(R.integer.material_motion_duration_long_1).toLong()
                     }
 
                     findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAboutFragment())
