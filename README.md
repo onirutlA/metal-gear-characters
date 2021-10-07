@@ -28,7 +28,7 @@ This project is focusing especially on the implementation of Material Design Com
 
 ## Download
 
-- Go To [Releases](https://github.com/onirutlA/MetalGearCharacter/releases)
+- Go To [Releases](https://github.com/onirutlA/MetalGearCharacters/releases)
 - Download the .apk file
 - Install on your phone
 
