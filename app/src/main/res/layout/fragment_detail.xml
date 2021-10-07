@@ -27,7 +27,6 @@
                 style="@style/Widget.MaterialComponents.AppBarLayout.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:fitsSystemWindows="true"
                 app:layout_behavior="com.google.android.material.appbar.AppBarLayout$Behavior">
 
                 <com.google.android.material.appbar.CollapsingToolbarLayout
