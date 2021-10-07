@@ -44,6 +44,10 @@ class DetailFragment : Fragment() {
             }
             character = args.character
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }
